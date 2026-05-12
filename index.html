@@ -1254,6 +1254,8 @@
   }
 
   function showResults() {
+    // Capturar nombre antes de ocultar el step
+    state.nombre = document.getElementById('nombre-input').value || '';
     document.getElementById(`step-${currentStep}`).classList.remove('active');
     document.getElementById(`nav-${currentStep}`).classList.add('completed');
     document.getElementById('results-screen').classList.add('show');
@@ -1330,7 +1332,7 @@
     const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbxFnzliafQLbTcAK5bIZn1Sk_8OeHFviyQJbUac3S2P5Rb9o4aFOfnoD_dBe7rJh3FY/exec';
 
     const payload = {
-      nombre: document.getElementById('nombre-input').value || '',
+      nombre: state.nombre || '',
       role: state.role || '',
       exp: state.exp || '',
       tech: state.tech || [],
