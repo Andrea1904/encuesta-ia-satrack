@@ -705,7 +705,7 @@
     <div class="step active" id="step-0">
       <div class="intro-decoration"></div>
       <div class="step-title">¿Cómo estamos usando la IA hoy?</div>
-      <div class="step-desc">Esta encuesta  toma menos de 5 minutos. El objetivo es entender dónde estamos como equipo para diseñar el mejor camino hacia adelante. No hay respuestas correctas o incorrectas.</div>
+      <div class="step-desc">Esta encuesta es anónima y toma menos de 5 minutos. El objetivo es entender dónde estamos como equipo para diseñar el mejor camino hacia adelante. No hay respuestas correctas o incorrectas.</div>
 
       <div style="background:var(--surface);border:1.5px solid var(--border);border-radius:12px;padding:24px;margin-bottom:32px">
         <div style="font-family:'Syne',sans-serif;font-size:11px;letter-spacing:0.15em;text-transform:uppercase;color:var(--ink2);margin-bottom:16px">Lo que vamos a explorar</div>
@@ -1077,12 +1077,28 @@
 
       <div class="question-block">
         <div class="question-label">¿Cómo prefieres aprender cosas nuevas?</div>
-        <div class="chips" id="aprendizaje-chips">
-          <div class="chip" onclick="selectChip('aprendizaje','haciendo','aprendizaje-chips')">Haciendo / proyectos prácticos</div>
-          <div class="chip" onclick="selectChip('aprendizaje','tutoriales','aprendizaje-chips')">Videos o tutoriales</div>
-          <div class="chip" onclick="selectChip('aprendizaje','pares','aprendizaje-chips')">Aprendiendo con pares</div>
-          <div class="chip" onclick="selectChip('aprendizaje','documentacion','aprendizaje-chips')">Leyendo documentación</div>
-          <div class="chip" onclick="selectChip('aprendizaje','cursos','aprendizaje-chips')">Cursos estructurados</div>
+        <div class="question-hint">Puedes seleccionar más de una.</div>
+        <div class="multi-cards">
+          <div class="mcard" onclick="toggleMulti('aprendizaje','haciendo',this)">
+            <div class="mcard-check"></div>
+            <div class="mcard-text">Haciendo / proyectos prácticos</div>
+          </div>
+          <div class="mcard" onclick="toggleMulti('aprendizaje','tutoriales',this)">
+            <div class="mcard-check"></div>
+            <div class="mcard-text">Videos o tutoriales</div>
+          </div>
+          <div class="mcard" onclick="toggleMulti('aprendizaje','pares',this)">
+            <div class="mcard-check"></div>
+            <div class="mcard-text">Aprendiendo con pares</div>
+          </div>
+          <div class="mcard" onclick="toggleMulti('aprendizaje','documentacion',this)">
+            <div class="mcard-check"></div>
+            <div class="mcard-text">Leyendo documentación</div>
+          </div>
+          <div class="mcard" onclick="toggleMulti('aprendizaje','cursos',this)">
+            <div class="mcard-check"></div>
+            <div class="mcard-text">Cursos estructurados</div>
+          </div>
         </div>
       </div>
 
@@ -1177,7 +1193,7 @@
     prompting: null,
     barreras: [],
     oport: [],
-    aprendizaje: null,
+    aprendizaje: [],
     aprender: [],
   };
 
@@ -1327,7 +1343,7 @@
       barrerasTexto: document.getElementById('barreras-texto').value || '',
       oport: state.oport || [],
       automatizarTexto: document.getElementById('automatizar-texto').value || '',
-      aprendizaje: state.aprendizaje || '',
+      aprendizaje: (state.aprendizaje || []).join(', '),
       aprender: state.aprender || [],
       proyectoTexto: document.getElementById('proyecto-texto').value || '',
       libreTexto: document.getElementById('libre-texto').value || ''
