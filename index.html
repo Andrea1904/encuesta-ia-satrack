@@ -741,6 +741,11 @@
       <div class="step-desc">Cuéntanos un poco sobre tu rol y tu experiencia en el equipo.</div>
 
       <div class="question-block">
+        <div class="question-label">Tu nombre</div>
+        <input type="text" id="nombre-input" placeholder="Ej. Juan Pérez" style="width:100%;border:1.5px solid var(--border);border-radius:10px;padding:12px 16px;font-family:'Karla',sans-serif;font-size:14px;color:var(--ink);background:var(--surface);transition:border-color 0.15s;" onfocus="this.style.borderColor='var(--ink)'" onblur="this.style.borderColor='var(--border)'" oninput="state.nombre=this.value" />
+      </div>
+
+      <div class="question-block">
         <div class="question-label">¿Cuál es tu rol actual?</div>
         <div class="role-cards">
           <div class="role-card" onclick="selectRole('dev-junior')" id="role-dev-junior">
@@ -1161,6 +1166,7 @@
 
 <script>
   const state = {
+    nombre: '',
     role: null,
     exp: null,
     tech: [],
@@ -1253,7 +1259,8 @@
     else { level = 'Punto de partida'; levelTag = ''; }
 
     const roleLabel = { 'dev-junior': 'Dev Junior', 'dev-mid': 'Dev Mid', 'dev-senior': 'Dev Senior', 'tech-lead': 'Tech Lead' }[state.role] || 'Dev';
-    document.getElementById('res-title').textContent = roleLabel + ' · ' + level;
+    const nombre = state.nombre ? state.nombre + ' · ' : '';
+    document.getElementById('res-title').textContent = nombre + roleLabel + ' · ' + level;
 
     // Insights
     const insights = [
@@ -1307,6 +1314,7 @@
     const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbxFnzliafQLbTcAK5bIZn1Sk_8OeHFviyQJbUac3S2P5Rb9o4aFOfnoD_dBe7rJh3FY/exec';
 
     const payload = {
+      nombre: state.nombre || '',
       role: state.role || '',
       exp: state.exp || '',
       tech: state.tech || [],
