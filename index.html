@@ -1334,38 +1334,34 @@
   }
 
   async function sendToSheets() {
-    const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbyLJtkYFP1b4tq0H7eu8Gkq25EGYmaRx2ZLXGI9mI_Nrg8i0x6wDjX2RVIalK8hYLAC/exec';
-
-    const payload = {
-      nombre: state.nombre || '',
-      role: state.role || '',
-      exp: state.exp || '',
-      tech: state.tech || [],
-      freq: state.freq || '',
-      uso: state.uso || [],
-      impact: state.impact || '',
-      tools: state.tools || [],
-      prompting: state.prompting || '',
-      barreras: state.barreras || [],
-      barrerasTexto: document.getElementById('barreras-texto').value || '',
-      oport: state.oport || [],
-      automatizarTexto: document.getElementById('automatizar-texto').value || '',
-      aprendizaje: (state.aprendizaje || []).join(', '),
-      aprender: state.aprender || [],
-      proyectoTexto: document.getElementById('proyecto-texto').value || '',
-      libreTexto: document.getElementById('libre-texto').value || ''
-    };
-
-    // Indicador de envío
+    const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbyfTD_TEA-WhL2uoRYcGrwWmA3q5KyXllXKpiVUQMVa3RyXhoLToaaPUhyKu8l_0X4a/exec';
     const banner = document.getElementById('sheet-status');
     if (banner) banner.textContent = '⏳ Guardando respuestas...';
 
+    const params = new URLSearchParams({
+      nombre: state.nombre || '',
+      role: state.role || '',
+      exp: state.exp || '',
+      tech: (state.tech || []).join(', '),
+      freq: state.freq || '',
+      uso: (state.uso || []).join(', '),
+      impact: state.impact || '',
+      tools: (state.tools || []).join(', '),
+      prompting: state.prompting || '',
+      barreras: (state.barreras || []).join(', '),
+      barrerasTexto: document.getElementById('barreras-texto').value || '',
+      oport: (state.oport || []).join(', '),
+      automatizarTexto: document.getElementById('automatizar-texto').value || '',
+      aprendizaje: (state.aprendizaje || []).join(', '),
+      aprender: (state.aprender || []).join(', '),
+      proyectoTexto: document.getElementById('proyecto-texto').value || '',
+      libreTexto: document.getElementById('libre-texto').value || ''
+    });
+
     try {
-      await fetch(SCRIPT_URL, {
-        method: 'POST',
-        mode: 'no-cors',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(payload)
+      await fetch(SCRIPT_URL + '?' + params.toString(), {
+        method: 'GET',
+        mode: 'no-cors'
       });
       if (banner) {
         banner.textContent = '✅ Respuestas guardadas en Google Sheets';
@@ -1373,7 +1369,7 @@
       }
     } catch (err) {
       if (banner) {
-        banner.textContent = '⚠️ No se pudo guardar automáticamente. Usa el botón de copiar.';
+        banner.textContent = '⚠️ No se pudo guardar automáticamente.';
         banner.style.color = '#c45c26';
       }
     }
