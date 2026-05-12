@@ -664,7 +664,7 @@
 
 <div class="topbar">
   <span>Satrack · Equipo Dev</span>
-  <span class="topbar-right">Diagnóstico de Adopción IA · 2026</span>
+  <span class="topbar-right">Diagnóstico de Adopción IA · 2025</span>
 </div>
 
 <div class="mobile-progress">
@@ -742,7 +742,7 @@
 
       <div class="question-block">
         <div class="question-label">Tu nombre</div>
-        <input type="text" id="nombre-input" placeholder="Ej. Juan Pérez" style="width:100%;border:1.5px solid var(--border);border-radius:10px;padding:12px 16px;font-family:'Karla',sans-serif;font-size:14px;color:var(--ink);background:var(--surface);transition:border-color 0.15s;" onfocus="this.style.borderColor='var(--ink)'" onblur="this.style.borderColor='var(--border)'" oninput="state.nombre=this.value" />
+        <input type="text" id="nombre-input" placeholder="Ej. Juan Pérez" style="width:100%;border:1.5px solid var(--border);border-radius:10px;padding:12px 16px;font-family:'Karla',sans-serif;font-size:14px;color:var(--ink);background:var(--surface);transition:border-color 0.15s;" onfocus="this.style.borderColor='var(--ink)'" onblur="this.style.borderColor='var(--border)'" />
       </div>
 
       <div class="question-block">
@@ -1330,7 +1330,7 @@
     const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbxFnzliafQLbTcAK5bIZn1Sk_8OeHFviyQJbUac3S2P5Rb9o4aFOfnoD_dBe7rJh3FY/exec';
 
     const payload = {
-      nombre: state.nombre || '',
+      nombre: document.getElementById('nombre-input').value || '',
       role: state.role || '',
       exp: state.exp || '',
       tech: state.tech || [],
